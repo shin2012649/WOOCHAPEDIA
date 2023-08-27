@@ -1,7 +1,7 @@
 package com.movie.woochapedia.grade;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.movie.reviewsite.movie.MovieEntity;
+import com.movie.woochapedia.movie.MovieEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

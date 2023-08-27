@@ -1,6 +1,6 @@
 package com.movie.woochapedia.review;
 
-import com.movie.reviewsite.movie.MovieEntity;
+
 import lombok.*;
 
 import javax.persistence.*;

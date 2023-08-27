@@ -26,7 +26,7 @@ public class MovieDto {
 
     private String grade;
 
-    public com.movie.reviewsite.movie.MovieEntity toEntity(){
-        return new com.movie.reviewsite.movie.MovieEntity(id, imgName, imgUrl, title, content, director,actor, movieTime, grade);
+    public com.movie.woochapedia.movie.MovieEntity toEntity(){
+        return new com.movie.woochapedia.movie.MovieEntity(id, imgName, imgUrl, title, content, director,actor, movieTime, grade);
     }
 }

@@ -1,7 +1,6 @@
 package com.movie.woochapedia.review;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.movie.reviewsite.movie.MovieEntity;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,8 +29,8 @@ public class ReviewDto {
 
     private Long views;
 
-    public com.movie.reviewsite.review.ReviewEntity toEntity(){
-        return new com.movie.reviewsite.review.ReviewEntity(id, movieId, movieTitle, title, content, writer, score, views);
+    public com.movie.woochapedia.review.ReviewEntity toEntity(){
+        return new com.movie.woochapedia.review.ReviewEntity(id, movieId, movieTitle, title, content, writer, score, views);
     }
 
     public Long getMovieId(){

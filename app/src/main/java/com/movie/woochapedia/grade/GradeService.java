@@ -1,13 +1,15 @@
 package com.movie.woochapedia.grade;
 
-import com.movie.reviewsite.movie.MovieEntity;
-import com.movie.reviewsite.movie.MovieRepository;
+
+import com.movie.woochapedia.movie.MovieEntity;
+import com.movie.woochapedia.movie.MovieRepository;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,15 +19,15 @@ import java.util.stream.Collectors;
 public class GradeService {
 
     @Autowired
-    private com.movie.reviewsite.grade.GradeRepository gradeRepository;
+    private com.movie.woochapedia.grade.GradeRepository gradeRepository;
 
     @Autowired
     private MovieRepository movieRepository;
 
-    public List<com.movie.reviewsite.grade.GradeDto> grades(Long movieId) {
+    public List<GradeDto> grades(Long movieId) {
         return gradeRepository.findByMovieId(movieId) //댓글 목록 조회
                 .stream() // 엔티티 -> DTO 변환
-                .map(gradeEntity -> com.movie.reviewsite.grade.GradeDto.createGradeDto(gradeEntity))
+                .map(GradeDto::createGradeDto)
                         .collect(Collectors.toList());
     }
 

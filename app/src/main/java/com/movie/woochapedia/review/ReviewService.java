@@ -1,7 +1,8 @@
 package com.movie.woochapedia.review;
 
-import com.movie.reviewsite.movie.MovieEntity;
-import com.movie.reviewsite.movie.MovieRepository;
+
+import com.movie.woochapedia.movie.MovieEntity;
+import com.movie.woochapedia.movie.MovieRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

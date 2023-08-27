@@ -1,5 +1,5 @@
 package com.movie.woochapedia.grade;
-import com.movie.reviewsite.movie.MovieEntity;
+import com.movie.woochapedia.movie.MovieEntity;
 import lombok.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,7 +34,7 @@ public class GradeEntity {
     @Column
     private String body;
 
-    public void patch(com.movie.reviewsite.grade.GradeDto dto) { // 이 메소드는 GradeService.update()에 있음
+    public void patch(com.movie.woochapedia.grade.GradeDto dto) { // 이 메소드는 GradeService.update()에 있음
         if(this.id != dto.getId()) // 예외처리
             throw new IllegalArgumentException("잘못된 id 입니다");
         //나머지는 입력된 내용들로 갱신시켜주기
@@ -45,7 +45,7 @@ public class GradeEntity {
         if(dto.getBody() != null)
             this.body = dto.getBody();
     }
-    public static GradeEntity createGrade(com.movie.reviewsite.grade.GradeDto dto, MovieEntity movie) {
+    public static GradeEntity createGrade(com.movie.woochapedia.grade.GradeDto dto, MovieEntity movie) {
         if(dto.getId() != null){ // 아이디가 입력되면 안되는데 입력됐을 때
             throw new IllegalArgumentException("id입력 하면 안돼요");
         }

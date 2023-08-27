@@ -1,15 +1,14 @@
 package com.movie.woochapedia.review;
 
-import com.movie.reviewsite.movie.MovieEntity;
-import com.movie.reviewsite.movie.MovieRepository;
-import com.movie.reviewsite.movie.MovieService;
+import com.movie.woochapedia.movie.MovieEntity;
+import com.movie.woochapedia.movie.MovieRepository;
+import com.movie.woochapedia.movie.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -17,13 +16,13 @@ import java.util.List;
 public class ReviewController {
 
     @Autowired
-    private com.movie.reviewsite.review.ReviewRepository reviewRepository;
+    private com.movie.woochapedia.review.ReviewRepository reviewRepository;
 
     @Autowired
     private MovieRepository movieRepository;
 
     @Autowired
-    private com.movie.reviewsite.review.ReviewService reviewService;
+    private com.movie.woochapedia.review.ReviewService reviewService;
 
     @Autowired
     private MovieService movieService;
@@ -31,7 +30,7 @@ public class ReviewController {
     @GetMapping("/review")      // 리뷰 리스트 보여주기
     public String allReviewPage(Model model){
 //        List<ReviewEntity> reviewEntityList = reviewRepository.findAll();
-        List<com.movie.reviewsite.review.ReviewEntity> reviewEntityList = reviewService.findAll();
+        List<com.movie.woochapedia.review.ReviewEntity> reviewEntityList = reviewService.findAll();
         model.addAttribute("reviewEntityList", reviewEntityList);
         return "/review/reviews";
     }
@@ -40,7 +39,7 @@ public class ReviewController {
     public String detailReviewPage(@PathVariable Long id, Model model){
 
 //        ReviewEntity reviewEntity = reviewRepository.findById(id).orElse(null);
-        com.movie.reviewsite.review.ReviewEntity reviewEntity = reviewService.findById(id);
+        com.movie.woochapedia.review.ReviewEntity reviewEntity = reviewService.findById(id);
         model.addAttribute("reviewEntity", reviewEntity);
 
         return "/review/detail";
@@ -57,9 +56,9 @@ public class ReviewController {
     }
 
     @PostMapping("/review/create") // 새 리뷰 작성 후 DB 저장
-    public String createReview(com.movie.reviewsite.review.ReviewDto reviewDto){
+    public String createReview(com.movie.woochapedia.review.ReviewDto reviewDto){
         // movieId title writer score content
-        com.movie.reviewsite.review.ReviewEntity reviewEntity = reviewService.create(reviewDto);
+        com.movie.woochapedia.review.ReviewEntity reviewEntity = reviewService.create(reviewDto);
         return "redirect:/review";
     }
 
@@ -67,7 +66,7 @@ public class ReviewController {
     @GetMapping("/review/edit/{id}")
     public String editReviewPage(@PathVariable Long id, Model model){
 
-        com.movie.reviewsite.review.ReviewEntity reviewEntity = reviewService.findById(id);
+        com.movie.woochapedia.review.ReviewEntity reviewEntity = reviewService.findById(id);
         model.addAttribute("reviewEntity", reviewEntity);
         return "/review/edit";
     }
@@ -75,9 +74,9 @@ public class ReviewController {
 
     // 리뷰 수정
     @PostMapping("/review/update")
-    public String update(Long id, com.movie.reviewsite.review.ReviewDto reviewDto){
+    public String update(Long id, com.movie.woochapedia.review.ReviewDto reviewDto){
 
-        com.movie.reviewsite.review.ReviewEntity reviewEntity = reviewService.edit(id, reviewDto);
+        com.movie.woochapedia.review.ReviewEntity reviewEntity = reviewService.edit(id, reviewDto);
 //        ReviewEntity reviewEntity = reviewDto.toEntity();
 //        ReviewEntity target = reviewRepository.findById(reviewDto.getId()).orElse(null);
 //
@@ -93,7 +92,7 @@ public class ReviewController {
     // 삭제
     @GetMapping("/review/delete/{id}")
     public String deleteReview(@PathVariable Long id){
-        com.movie.reviewsite.review.ReviewEntity reviewDelete = reviewService.delete(id);
+        com.movie.woochapedia.review.ReviewEntity reviewDelete = reviewService.delete(id);
         return "redirect:/review";
     }
 }

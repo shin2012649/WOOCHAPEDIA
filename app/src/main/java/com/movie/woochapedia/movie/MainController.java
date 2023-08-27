@@ -1,8 +1,8 @@
 package com.movie.woochapedia.movie;
 
-import com.movie.reviewsite.grade.GradeService;
-import com.movie.reviewsite.review.ReviewEntity;
-import com.movie.reviewsite.review.ReviewService;
+import com.movie.woochapedia.grade.GradeService;
+import com.movie.woochapedia.review.ReviewEntity;
+import com.movie.woochapedia.review.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +14,7 @@ import java.util.List;
 public class MainController {
 
     @Autowired
-    private com.movie.reviewsite.movie.MovieService movieService;
+    private com.movie.woochapedia.movie.MovieService movieService;
 
     @Autowired
     private ReviewService reviewService;
@@ -26,7 +26,7 @@ public class MainController {
     @GetMapping("/")
     public String mainPage(Model model){
 
-        List<com.movie.reviewsite.movie.MovieEntity> movieEntityList = movieService.findAll();
+        List<com.movie.woochapedia.movie.MovieEntity> movieEntityList = movieService.findAll();
         model.addAttribute("movieEntityList", movieEntityList);
 
         List<ReviewEntity> reviewEntityList = reviewService.findAll();
