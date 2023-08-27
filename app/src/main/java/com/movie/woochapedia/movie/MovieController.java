@@ -1,0 +1,93 @@
+package com.movie.woochapedia.movie;
+
+import com.movie.reviewsite.grade.GradeDto;
+import com.movie.reviewsite.grade.GradeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
+
+@Controller
+public class MovieController {
+
+    @Autowired
+    private com.movie.reviewsite.movie.MovieRepository movieRepository;
+
+    @Autowired
+    private com.movie.reviewsite.movie.MovieService movieService;
+    @Autowired
+    private GradeService gradeService;
+
+    // movieDetail 화면 전체 view 페이지
+    @GetMapping("/detail")
+    public String allMoviePage(Model model){
+
+        List<com.movie.reviewsite.movie.MovieEntity> movieEntityList = movieService.findAll();
+        // todo: 이미 MovieEntity 를 선언했기 때문에 추가로 선언할 필요가 없음
+//        List<MovieEntity> movieEntity = movieService.findAll(); // 추가해봤는데...
+
+        model.addAttribute("movieEntityList", movieEntityList);
+        // todo: view 페이지에 해당 데이터를 전달할 필요가 없음
+//        model.addAttribute("movieEntity", "/detail/{{id}}"); //추가해봤는데...
+
+        return"/movie/details";
+    }
+
+    // movie detail view 페이지
+    @GetMapping("/detail/{id}")
+    public String detailMovie(@PathVariable Long id, Model model){
+
+        com.movie.reviewsite.movie.MovieEntity movieEntity = movieService.findMovie(id);
+        List<GradeDto> gradeDtos = gradeService.grades(id);
+
+        model.addAttribute("movieEntity",movieEntity);
+        model.addAttribute("gradesDtos", gradeDtos);
+        return "/movie/detail";
+    }
+
+    // movie 등록 view 페이지
+    @GetMapping("/detail/new")
+    public String newMoviePage(){
+
+        return"/movie/newDetail";
+    }
+
+    // movie 등록 post
+    @PostMapping("/detail/create")
+    public String createMovie(com.movie.reviewsite.movie.MovieDto movieDto, @RequestParam("imgFile") MultipartFile poster) throws Exception {
+        // todo: @RequestParam("imgFile") 를 이용해서 post 시 데이터 전달. input 태그의 name 속성이 'imgFile' 이면 전달됨
+
+       com.movie.reviewsite.movie.MovieEntity movieEntity = movieService.create(movieDto, poster);
+       // todo: view 페이지에 해당 데이터를 전달할 필요가 없음
+//       model.addAttribute("poster", movieEntity); // 모델 추가하긴했는데...
+
+        return "redirect:/detail/"+movieEntity.getId();
+    }
+
+    // movie 수정 view 페이지
+    @GetMapping("/detail/update/{id}")
+    public String updateMoviePage(@PathVariable Long id,Model model){
+
+        com.movie.reviewsite.movie.MovieEntity movieEntity = movieService.findMovie(id);
+        model.addAttribute("movieEntity", movieEntity);
+        return "/movie/update";
+    }
+
+    // movie 수정 patch
+    @PatchMapping("/detail/edit") // action
+    public String editMovie(@PathVariable Long id, com.movie.reviewsite.movie.MovieDto movieDto){
+        com.movie.reviewsite.movie.MovieEntity movieEntity = movieService.edit(id, movieDto);
+        return "redirect:/detail";
+    }
+
+    // movie 삭제 delete
+    @GetMapping("/detail/delete/{id}")
+    public String deleteMovie(@PathVariable Long id){
+        com.movie.reviewsite.movie.MovieEntity movieEntity = movieService.delete(id);
+        return "redirect:/detail";
+    }
+
+}

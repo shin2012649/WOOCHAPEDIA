@@ -11,5 +11,5 @@ plugins {
 }
 
 rootProject.name = 'WOOCHAPEDIA'
-include('app-server')
+include('app')
 include('app-common')
