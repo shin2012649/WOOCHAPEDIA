@@ -15,7 +15,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MovieEntity {
+public class MovieEntity  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

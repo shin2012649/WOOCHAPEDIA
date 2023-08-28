@@ -34,10 +34,10 @@ public class GradeEntity {
     @Column
     private String body;
 
-    public void patch(com.movie.woochapedia.grade.GradeDto dto) { // 이 메소드는 GradeService.update()에 있음
-        if(this.id != dto.getId()) // 예외처리
+    public void patch(com.movie.woochapedia.grade.GradeDto dto) {
+        if(this.id != dto.getId())
             throw new IllegalArgumentException("잘못된 id 입니다");
-        //나머지는 입력된 내용들로 갱신시켜주기
+
         if(dto.getTitle() != null)
             this.title = dto.getTitle();
         if(dto.getGrade() != null)
@@ -46,10 +46,10 @@ public class GradeEntity {
             this.body = dto.getBody();
     }
     public static GradeEntity createGrade(com.movie.woochapedia.grade.GradeDto dto, MovieEntity movie) {
-        if(dto.getId() != null){ // 아이디가 입력되면 안되는데 입력됐을 때
+        if(dto.getId() != null){
             throw new IllegalArgumentException("id입력 하면 안돼요");
         }
-        if(dto.getMovieId() != movie.getId()){ // 해당영화는 1번인데 댓글은 2번에 만들려고할때
+        if(dto.getMovieId() != movie.getId()){
             throw new IllegalArgumentException(("id가 잘못됐어요"));
         }
         return new GradeEntity(

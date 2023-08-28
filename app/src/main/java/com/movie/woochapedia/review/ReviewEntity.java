@@ -13,7 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ReviewEntity {
+public class ReviewEntity  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,10 +59,5 @@ public class ReviewEntity {
         }
 
     }
-/*
-    public static ReviewEntity createReview(ReviewDto dto, MovieEntity movie){
 
-        return null;
-    }
-*/
 }
