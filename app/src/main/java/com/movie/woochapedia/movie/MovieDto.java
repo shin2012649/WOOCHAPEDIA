@@ -6,7 +6,7 @@ import lombok.ToString;
 
 @AllArgsConstructor
 @ToString
-public class MovieDto {
+public class   MovieDto {
 
     private Long id;
 

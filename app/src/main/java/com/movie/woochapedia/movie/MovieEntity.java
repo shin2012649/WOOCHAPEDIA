@@ -59,7 +59,7 @@ public class MovieEntity {
         if (movieEntity.content != null){
             this.content = movieEntity.content;
         }
-        if (movieEntity.director != null){
+        if (movieEntity.director  != null){
             this.director = movieEntity.director;
         }
         if (movieEntity.actor != null){
