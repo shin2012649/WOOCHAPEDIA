@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @Controller
-public class MovieController {
+public class MovieController  {
 
     @Autowired
     private com.movie.woochapedia.movie.MovieRepository movieRepository;
@@ -37,7 +37,7 @@ public class MovieController {
 
     // movie detail view 페이지
     @GetMapping("/detail/{id}")
-    public String detailMovie(@PathVariable Long id, Model model){
+    public String detailMovie(@PathVariable Long id,  Model model){
 
         com.movie.woochapedia.movie.MovieEntity movieEntity = movieService.findMovie(id);
         List<GradeDto> gradeDtos = gradeService.grades(id);
