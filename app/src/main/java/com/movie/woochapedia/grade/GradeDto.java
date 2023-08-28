@@ -1,7 +1,6 @@
 package com.movie.woochapedia.grade;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.movie.woochapedia.movie.MovieEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +14,7 @@ import lombok.ToString;
 public class GradeDto {
 
     private Long id;
-    @JsonProperty("movie_id") //JSON에서는 "movie_id"로 날라오니까 그걸로 맵핑시켜줘
+    @JsonProperty("movie_id") 
     private Long movieId;
     private String title;
     private Integer grade;
