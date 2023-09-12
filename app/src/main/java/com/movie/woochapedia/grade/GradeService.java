@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class GradeService {
 
     @Autowired
-    private com.movie.woochapedia.grade.GradeRepository gradeRepository;
+    private GradeRepository gradeRepository;
 
     @Autowired
     private MovieRepository movieRepository;
@@ -27,8 +27,8 @@ public class GradeService {
     public List<GradeDto> grades(Long movieId) {
         return gradeRepository.findByMovieId(movieId) //댓글 목록 조회
                 .stream() // 엔티티 -> DTO 변환
-                .map(GradeDto::createGradeDto)
-                        .collect(Collectors.toList());
+                .map(gradeEntity -> GradeDto.createGradeDto(gradeEntity))
+                .collect(Collectors.toList());
     }
 
     @Transactional

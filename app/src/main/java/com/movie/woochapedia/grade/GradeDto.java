@@ -14,7 +14,7 @@ import lombok.ToString;
 public class GradeDto {
 
     private Long id;
-    @JsonProperty("movie_id") 
+    @JsonProperty("movie_id") //JSON에서는 "movie_id"로 날라오니까 그걸로 맵핑시켜줘
     private Long movieId;
     private String title;
     private Integer grade;
@@ -22,7 +22,7 @@ public class GradeDto {
 
     // JSON을 DTO로 변환하는 메소드
     public static GradeDto createGradeDto(GradeEntity grade) {
-        return new GradeDto( 
+        return new GradeDto(
                 grade.getId(),
                 grade.getMovie().getId(),
                 grade.getTitle(),

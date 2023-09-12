@@ -29,8 +29,8 @@ public class ReviewDto {
 
     private Long views;
 
-    public com.movie.woochapedia.review.ReviewEntity toEntity(){
-        return new com.movie.woochapedia.review.ReviewEntity(id, movieId, movieTitle, title, content, writer, score, views);
+    public ReviewEntity toEntity(){
+        return new ReviewEntity(id, movieId, movieTitle, title, content, writer, score, views);
     }
 
     public Long getMovieId(){

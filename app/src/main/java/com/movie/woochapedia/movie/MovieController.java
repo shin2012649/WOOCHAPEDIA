@@ -12,13 +12,13 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @Controller
-public class MovieController  {
+public class MovieController {
 
     @Autowired
-    private com.movie.woochapedia.movie.MovieRepository movieRepository;
+    private MovieRepository movieRepository;
 
     @Autowired
-    private com.movie.woochapedia.movie.MovieService movieService;
+    private MovieService movieService;
     @Autowired
     private GradeService gradeService;
 
@@ -26,20 +26,22 @@ public class MovieController  {
     @GetMapping("/detail")
     public String allMoviePage(Model model){
 
-        List<com.movie.woochapedia.movie.MovieEntity> movieEntityList = movieService.findAll();
-
+        List<MovieEntity> movieEntityList = movieService.findAll();
+        // todo: 이미 MovieEntity 를 선언했기 때문에 추가로 선언할 필요가 없음
+//        List<MovieEntity> movieEntity = movieService.findAll(); // 추가해봤는데...
 
         model.addAttribute("movieEntityList", movieEntityList);
-
+        // todo: view 페이지에 해당 데이터를 전달할 필요가 없음
+//        model.addAttribute("movieEntity", "/detail/{{id}}"); //추가해봤는데...
 
         return"/movie/details";
     }
 
     // movie detail view 페이지
     @GetMapping("/detail/{id}")
-    public String detailMovie(@PathVariable Long id,  Model model){
+    public String detailMovie(@PathVariable Long id, Model model){
 
-        com.movie.woochapedia.movie.MovieEntity movieEntity = movieService.findMovie(id);
+        MovieEntity movieEntity = movieService.findMovie(id);
         List<GradeDto> gradeDtos = gradeService.grades(id);
 
         model.addAttribute("movieEntity",movieEntity);
@@ -56,12 +58,12 @@ public class MovieController  {
 
     // movie 등록 post
     @PostMapping("/detail/create")
-    public String createMovie(com.movie.woochapedia.movie.MovieDto movieDto, @RequestParam("imgFile") MultipartFile poster) throws Exception {
+    public String createMovie(MovieDto movieDto, @RequestParam("imgFile") MultipartFile poster) throws Exception {
+        // todo: @RequestParam("imgFile") 를 이용해서 post 시 데이터 전달. input 태그의 name 속성이 'imgFile' 이면 전달됨
 
-
-       com.movie.woochapedia.movie.MovieEntity movieEntity = movieService.create(movieDto, poster);
-
-
+        MovieEntity movieEntity = movieService.create(movieDto, poster);
+        // todo: view 페이지에 해당 데이터를 전달할 필요가 없음
+//       model.addAttribute("poster", movieEntity); // 모델 추가하긴했는데...
 
         return "redirect:/detail/"+movieEntity.getId();
     }
@@ -70,22 +72,22 @@ public class MovieController  {
     @GetMapping("/detail/update/{id}")
     public String updateMoviePage(@PathVariable Long id,Model model){
 
-        com.movie.woochapedia.movie.MovieEntity movieEntity = movieService.findMovie(id);
+        MovieEntity movieEntity = movieService.findMovie(id);
         model.addAttribute("movieEntity", movieEntity);
         return "/movie/update";
     }
 
     // movie 수정 patch
     @PatchMapping("/detail/edit") // action
-    public String editMovie(@PathVariable Long id, com.movie.woochapedia.movie.MovieDto movieDto){
-        com.movie.woochapedia.movie.MovieEntity movieEntity = movieService.edit(id, movieDto);
+    public String editMovie(@PathVariable Long id, MovieDto movieDto){
+        MovieEntity movieEntity = movieService.edit(id, movieDto);
         return "redirect:/detail";
     }
 
     // movie 삭제 delete
     @GetMapping("/detail/delete/{id}")
     public String deleteMovie(@PathVariable Long id){
-        com.movie.woochapedia.movie.MovieEntity movieEntity = movieService.delete(id);
+        MovieEntity movieEntity = movieService.delete(id);
         return "redirect:/detail";
     }
 

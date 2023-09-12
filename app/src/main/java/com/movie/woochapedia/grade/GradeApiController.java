@@ -21,14 +21,14 @@ public class GradeApiController {
 
     @PostMapping("/api/movies/{movieId}/grades")
     public ResponseEntity<GradeDto> create(@PathVariable Long movieId,
-                                                @RequestBody GradeDto dto){
+                                           @RequestBody GradeDto dto){
         GradeDto createdDto = gradeService.create(movieId, dto);
         return ResponseEntity.status(HttpStatus.OK).body(createdDto);
     }
 
     @PatchMapping("/api/grades/{id}")
     public ResponseEntity<GradeDto> update(@PathVariable Long id,
-                                              @RequestBody GradeDto dto){
+                                           @RequestBody GradeDto dto){
         GradeDto updatedDto = gradeService.update(id, dto);
         return ResponseEntity.status(HttpStatus.OK).body(updatedDto);
     }

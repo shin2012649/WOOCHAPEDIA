@@ -13,18 +13,18 @@
         </thead>
         <tbody>
         {{#reviewEntityList}}
-        <tr>
-            <th scope="row">{{movieTitle}}</th>
-            <td><a href="/review/{{id}}">{{title}}</a></td>
-            <td>{{writer}}</td>
-            <td>{{score}}</td>
-            <td>{{views}}</td>
-        </tr>
+            <tr>
+                <th scope="row">{{movieTitle}}</th>
+                <td><a href="/review/{{id}}">{{title}}</a></td>
+                <td>{{writer}}</td>
+                <td>{{score}}</td>
+                <td>{{views}}</td>
+            </tr>
         {{/reviewEntityList}}
         </tbody>
     </table>
-<div style="margin-bottom: 10px;"></div>
-<button type="button" class="btn btn-outline-secondary"><a href="/review/new">새 리뷰 쓰기</a></button>
+    <div style="margin-bottom: 10px;"></div>
+    <button type="button" class="btn btn-outline-secondary"><a href="/review/new">새 리뷰 쓰기</a></button>
     <div style="margin-bottom: 100px;"></div>
 
 </div>

@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
 @Controller
-public class MainController  {
+public class MainController {
 
     @Autowired
-    private com.movie.woochapedia.movie.MovieService movieService;
+    private MovieService movieService;
 
     @Autowired
     private ReviewService reviewService;
@@ -26,7 +26,7 @@ public class MainController  {
     @GetMapping("/")
     public String mainPage(Model model){
 
-        List<com.movie.woochapedia.movie.MovieEntity> movieEntityList = movieService.findAll();
+        List<MovieEntity> movieEntityList = movieService.findAll();
         model.addAttribute("movieEntityList", movieEntityList);
 
         List<ReviewEntity> reviewEntityList = reviewService.findAll();

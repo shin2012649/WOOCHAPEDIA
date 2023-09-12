@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 @Slf4j
 @Transactional
-public class ReviewService  {
+public class ReviewService {
 
     @Autowired
     private ReviewRepository reviewRepository;

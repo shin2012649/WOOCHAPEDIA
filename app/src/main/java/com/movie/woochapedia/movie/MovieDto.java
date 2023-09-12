@@ -6,7 +6,7 @@ import lombok.ToString;
 
 @AllArgsConstructor
 @ToString
-public class   MovieDto {
+public class MovieDto {
 
     private Long id;
 
@@ -26,7 +26,7 @@ public class   MovieDto {
 
     private String grade;
 
-    public com.movie.woochapedia.movie.MovieEntity toEntity(){
-        return new com.movie.woochapedia.movie.MovieEntity(id, imgName, imgUrl, title, content, director,actor, movieTime, grade);
+    public MovieEntity toEntity(){
+        return new MovieEntity(id, imgName, imgUrl, title, content, director,actor, movieTime, grade);
     }
 }
