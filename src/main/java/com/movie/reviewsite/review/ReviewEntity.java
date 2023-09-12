@@ -59,10 +59,5 @@ public class ReviewEntity {
         }
 
     }
-/*
-    public static ReviewEntity createReview(ReviewDto dto, MovieEntity movie){
 
-        return null;
-    }
-*/
 }

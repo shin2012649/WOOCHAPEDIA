@@ -26,12 +26,9 @@ public class MovieController {
     public String allMoviePage(Model model){
 
         List<MovieEntity> movieEntityList = movieService.findAll();
-        // todo: 이미 MovieEntity 를 선언했기 때문에 추가로 선언할 필요가 없음
-//        List<MovieEntity> movieEntity = movieService.findAll(); // 추가해봤는데...
+
 
         model.addAttribute("movieEntityList", movieEntityList);
-        // todo: view 페이지에 해당 데이터를 전달할 필요가 없음
-//        model.addAttribute("movieEntity", "/detail/{{id}}"); //추가해봤는데...
 
         return"/movie/details";
     }
@@ -61,8 +58,6 @@ public class MovieController {
         // todo: @RequestParam("imgFile") 를 이용해서 post 시 데이터 전달. input 태그의 name 속성이 'imgFile' 이면 전달됨
 
        MovieEntity movieEntity = movieService.create(movieDto, poster);
-       // todo: view 페이지에 해당 데이터를 전달할 필요가 없음
-//       model.addAttribute("poster", movieEntity); // 모델 추가하긴했는데...
 
         return "redirect:/detail/"+movieEntity.getId();
     }

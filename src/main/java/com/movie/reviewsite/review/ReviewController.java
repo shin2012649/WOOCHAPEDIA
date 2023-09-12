@@ -30,7 +30,6 @@ public class ReviewController {
 
     @GetMapping("/review")      // 리뷰 리스트 보여주기
     public String allReviewPage(Model model){
-//        List<ReviewEntity> reviewEntityList = reviewRepository.findAll();
         List<ReviewEntity> reviewEntityList = reviewService.findAll();
         model.addAttribute("reviewEntityList", reviewEntityList);
         return "/review/reviews";
@@ -39,7 +38,6 @@ public class ReviewController {
     @GetMapping("/review/{id}") // 리뷰 디테일 보여주기
     public String detailReviewPage(@PathVariable Long id, Model model){
 
-//        ReviewEntity reviewEntity = reviewRepository.findById(id).orElse(null);
         ReviewEntity reviewEntity = reviewService.findById(id);
         model.addAttribute("reviewEntity", reviewEntity);
 
@@ -49,7 +47,6 @@ public class ReviewController {
     @GetMapping("/review/new")  // 새 리뷰 작성 창
     public String newReviewPage(Model model){
 
-//        List<MovieEntity> movieEntityList = movieRepository.findAll();
         List<MovieEntity> movieEntityList = movieService.findAll();
 
         model.addAttribute("movieEntityList", movieEntityList);
@@ -78,15 +75,7 @@ public class ReviewController {
     public String update(Long id, ReviewDto reviewDto){
 
         ReviewEntity reviewEntity = reviewService.edit(id, reviewDto);
-//        ReviewEntity reviewEntity = reviewDto.toEntity();
-//        ReviewEntity target = reviewRepository.findById(reviewDto.getId()).orElse(null);
-//
-//        if(target != null){
-//            reviewRepository.save(reviewEntity);
-//        }
-//        else{
-//            // 수정할 내용이 없을 시 들어갈 내용
-//        }
+
         return "redirect:/review/" + reviewDto.getId();
     }
 
